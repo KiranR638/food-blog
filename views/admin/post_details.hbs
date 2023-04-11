@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Post details</title>
+        <link rel="stylesheet" href="../admin_postdetails.css" />
+    </head>
+    <body>
+
+    <!-- start of header -->
+    <header>
+      <nav class = "navbar">
+        <div class = "container">
+          <a href = "/admin/post" class = "navbar-brand">BLOG</a>
+        </div>
+      </nav>
+    </header>
+    <!-- end of header -->
+
+        <div class="post">
+
+        <div class="post_image_and_comments">
+            {{#if post.isAdmin }}
+            <p class="author">Author: Admin</p>
+            {{else}}
+            <p class="author">Author: {{user.name}}</p>
+            {{/if}}
+
+        <div class="post_image">
+            <img src = "../images/{{post.post_image}}" class="image" alt = "Post image">
+        </div>
+
+        <a style="color:white;" href="/delete/post?post_id={{post._id}}">Delete</a>
+        <a style="color:white;" href="/admin/update_post?post_id={{post._id}}">Edit</a>
+
+        <div class="comments">
+            {{#each comments}}
+            <div class="comment_box">
+                <h3 class="commentor_name">{{this.username}}</h3>
+                <p class="comment_content">{{this.comment_content}}</p>
+
+                <a href="/comment/delete?comment_id={{this._id}}">Delete</a>
+
+            </div>
+            <br>
+            {{/each}}
+        </div>
+
+        </div>
+
+        <div class="post_description">
+            <h3 class="post_title">{{post.title}}</h3>
+            <p class="post_content">{{post.description}}</p>
+
+            <p>{{post.date}}</p>
+        </div>
+
+        </div>
+        <script>
+        Handlebars.registerHelper("if", function(conditional, options) {
+  if (conditional) {
+    return options.fn(this);
+  }
+});
+    </script>
+    </body>
+</html>

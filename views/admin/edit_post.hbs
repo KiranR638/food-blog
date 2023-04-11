@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Update post</title>
+    <link rel="stylesheet" href="../post.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="signup-box">
+      <h1>Post</h1>
+      <form method="POST" action="/admin/update_post?post_id={{post_id}}" enctype="multipart/form-data">
+        <label>Title</label>
+        <input type="text" name="title" placeholder="" />
+        <label>Description</label>
+        <textarea cols="50" rows="7" name="description" placeholder="" ></textarea>
+        <input type="file" name="image" value="Select Image" />
+        <input type="submit" name="" value="Update" />
+      </form>
+    </div>
+  </body>
+</html>

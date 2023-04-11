@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>Post details</title>
+        <link rel="stylesheet" href="post_details.css" />
+    </head>
+    <body>
+        <header>
+      <nav class = "navbar">
+        <div class = "container">
+          <a href = "/" class = "navbar-brand">BLOG</a>
+        </div>
+      </nav>
+    </header>
+    <!-- end of header -->
+
+        <div class="post">
+
+        <div class="post_image_and_comments">
+            {{#if post.isAdmin }}
+            <p class="author">Author: Admin</p>
+            {{else}}
+            <p class="author">Author: {{user.name}}</p>
+            {{/if}}
+
+        <div class="post_image">
+            <img src = "images/{{post.post_image}}" class="image" alt = "Post image">
+        </div>
+
+        {{#if curr_user}}
+        <a style="color:white;" href="/update_post?post_id={{post._id}}">Edit</a>
+        {{/if}}
+
+
+        <form action="/add_comment?post_id={{post._id}}" method="POST">
+        <textarea rows="5" style="width:100%; margin-top:10px;" name="comment_content" placeholder="make a comment..."></textarea>
+        <input type="submit" value="Post"/>
+        </form>
+
+        <div class="comments">
+            {{#each comments}}
+            <div class="comment_box">
+                <h3 class="commentor_name">{{this.username}}</h3>
+                <p class="comment_content">{{this.comment_content}}</p>
+                
+
+                {{#if user_id}}
+                <a href="/delete_comment?comment_id={{this._id}}">Delete</a>
+                <a href="/edit_comment?comment_id={{this._id}}">edit comment</a>
+                {{/if}}
+                    
+                    
+                
+            </div>
+            <br>
+            {{/each}}
+        </div>
+
+        </div>
+
+        <div class="post_description">
+            <h3 class="post_title">{{post.title}}</h3>
+            <p class="post_content">{{post.description}}</p>
+
+            <p>{{post.date}}</p>
+        </div>
+
+        </div>
+        
+    </body>
+    
+</html>
